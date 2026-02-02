@@ -13,7 +13,7 @@ cd dots
 # What's included?
 Configurations for my daily drivers:
 
-Terminal: kitty & zsh shell
+- Terminal: kitty & zsh shell
 
 - WM: hyprland
 
