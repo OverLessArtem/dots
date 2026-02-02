@@ -1,6 +1,8 @@
 # OverLessArtem's dots
 Just my personal dotfiles. Use at your own risk. :D
 
+![screenshot](./screenshot.png)
+
 # Installation
 ```bash
 git clone https://github.com/OverLessArtem/dots.git
@@ -11,18 +13,18 @@ cd dots
 # What's included?
 Configurations for my daily drivers:
 
-    Terminal: kitty & zsh shell
+Terminal: kitty & zsh shell
 
-    WM: hyprland
+- WM: hyprland
 
-    Status Bar: waybar
+- Status Bar: waybar
 
-    App Launcher: fuzzel
+- App Launcher: fuzzel
 
-    File Manager: yazi
+- File Manager: yazi
 
-    System Info: fastfetch & btop
+- System Info: fastfetch & btop
 
-    Notifications: swaync
+- Notifications: swaync
 
-    Better cat: bat
+- Better cat: bat
