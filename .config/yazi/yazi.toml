@@ -1,0 +1,10 @@
+[opener]
+view_img = [{ run = 'swayimg "$@"', orphan = true, for = "unix" }]
+
+[open]
+rules = [
+   { mime = "image/*", use = ["view_img"] },
+]
+
+[mgr]
+show_hidden = true

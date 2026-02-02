@@ -1,0 +1,24 @@
+alias \
+\
+c="clear" \
+v="vim" \
+cat="bat" \
+l="ls -lh --color=auto --group-directories-first" \
+ls="ls -h --color=auto --group-directories-first" \
+la="ls -lah --color=auto --group-directories-first" \
+grep="grep --color=auto" \
+shell="exec $SHELL -l" \
+fk="sudo !!" \
+mv="mv -i" \
+rm="rm -Iv" \
+df="df -h" \
+du="du -h -d 1" \
+k="killall" \
+p="ps aux | grep $1" \
+lsbc="lsblk | bat -l conf -p" \
+freec="free -h | bat -l cpuinfo -p" \
+sensors="sensors | bat -l cpuinfo -p" \
+bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}

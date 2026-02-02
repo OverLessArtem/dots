@@ -1,16 +1,27 @@
 #!/bin/bash
 
-# Copying files
-cp -r btop ~/.config
-cp -r fuzzel ~/.config
-cp -r hypr ~/.config
-cp -r swaync ~/.config
-cp -r waybar ~/.config
-cp -r yazi ~/.config
-cp -r kitty ~/.config
+DOTFILES_DIR=$(pwd)
 
-# Moving wallpapers
-mkdir -p ~/Pictures/Wallpapers
-cp wallpapers/* ~/Pictures/Wallpapers/
+mkdir -p "$HOME/.config"
 
-echo "Done!"
+for folder in "$DOTFILES_DIR/.config"/*; do
+    if [ -d "$folder" ]; then
+        target=$(basename "$folder")
+        echo "Installing $target"
+        cp -r "$folder" "$HOME/.config/"
+    fi
+done
+
+# ZSH setup
+if [ -f "$HOME/.config/zsh/.zprofile" ]; then
+    cp "$HOME/.config/zsh/.zprofile" "$HOME/.zprofile"
+fi
+
+# Wallpapers setup
+if [ -d "$DOTFILES_DIR/wallpapers" ]; then
+    echo "Installing wallpapers"
+    mkdir -p "$HOME/Pictures/Wallpapers"
+    cp "$DOTFILES_DIR/wallpapers"/*.png "$HOME/Pictures/Wallpapers/" 2>/dev/null
+fi
+
+echo "Done"
