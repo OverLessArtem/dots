@@ -28,3 +28,5 @@ Configurations for my daily drivers:
 - Notifications: swaync
 
 - Better cat: bat
+
+- Music Player: rmpc
