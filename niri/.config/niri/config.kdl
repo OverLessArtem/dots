@@ -1,0 +1,226 @@
+
+input {
+    keyboard {
+        xkb {
+		layout "us,ru"
+		options "grp:win_space_toggle"
+        }
+        numlock
+    }
+
+    touchpad {
+        off
+    }
+
+    mouse {
+    }
+
+    trackpoint {
+	    off
+    }
+
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@180"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+    focus-at-startup
+}
+
+layout {
+    gaps 0
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.66666
+        proportion 1.0
+
+    }
+
+    default-column-width { proportion 1.0; }
+    
+    focus-ring {
+	off    
+    }
+
+    border {
+        width 2
+        inactive-color "#3c3836"
+        active-color "#d65d0e"	
+    }
+
+    shadow {
+	    off
+    }
+
+    struts {
+	left 2
+        right 2
+        top 2
+        bottom 2
+    }
+
+    tab-indicator {
+        length total-proportion=0.9
+        gaps-between-tabs 32
+        position "bottom"
+        corner-radius 32
+        inactive-color "#bbbbbb"
+    }
+   background-color "transparent"
+}
+
+cursor {
+    xcursor-theme "macOS"
+    xcursor-size 24
+    hide-after-inactive-ms 1000
+}
+
+prefer-no-csd
+
+// --- Автостарт ---
+spawn-at-startup "waybar"
+spawn-at-startup "swaync"
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+spawn-sh-at-startup "mpd ~/.config/mpd/mpd.conf"
+spawn-at-startup "pipewire"
+spawn-at-startup "wireplumber"
+spawn-at-startup "pipewire-pulse"
+spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"
+
+spawn-at-startup "swww-daemon"
+spawn-at-startup "swww" "img" "~/Pictures/Wallpapers/wallpaper.png"
+
+spawn-at-startup "xwayland-satellite" ":11"
+
+spawn-at-startup "swayidle" "-w" \
+    "timeout" "300" "~/.config/niri/scripts/lock.sh" \
+    "timeout" "600" "loginctl suspend" \
+    "before-sleep" "~/.config/niri/scripts/lock.sh"
+
+environment {
+    QT_QPA_PLATFORM "wayland"
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+screenshot-path "~/Pictures/Screenshots from %Y-%m-%d %H-%M-%S.png"
+
+
+animations {
+    slowdown 1.5
+}
+
+window-rule {
+    match is-floating=true
+    match title="Picture-in-Picture"
+    open-floating true
+    open-maximized false
+    open-on-output "HDMI-A-1"
+    open-focused false
+    opacity 1.0
+    geometry-corner-radius 0
+    border {
+        width 2
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"#
+
+    block-out-from "screen-capture"
+
+}
+
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+binds {
+    // Основные приложения
+    Mod+Q { spawn "kitty"; }
+    Mod+E { spawn "kitty" "-e" "zsh" "-c" "yazi"; }
+    Mod+R { spawn "fuzzel"; }
+    Mod+W { spawn "firefox"; }
+    Mod+Y { spawn "kitty" "-e" "zsh" "-c" "rmpc"; }
+    
+    // Управление окнами
+    Mod+C { close-window; }
+    Mod+Shift+M { quit; }
+    Mod+T { toggle-window-floating; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+L { spawn "~/.config/niri/scripts/lock.sh"; }
+    Mod+P { spawn "hyprpicker" "-an"; }
+    Mod+N { spawn "swaync-client" "-t"; }
+    
+    // Скриншоты
+    Print { spawn "grimshot" "copy" "area"; }
+
+    // Буфер обмена (Cliphist)
+    Mod+V { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+    Mod+Shift+V { spawn "cliphist" "wipe"; }
+
+    // Навигация (Фокус)
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+
+    Mod+A { toggle-overview; }
+
+    // Перемещение окон
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Down  { move-window-down; }
+
+    // Ресайз
+    Mod+Ctrl+Left  { set-column-width "-60"; }
+    Mod+Ctrl+Right { set-column-width "+60"; }
+    Mod+Ctrl+Up    { set-window-height "-60"; }
+    Mod+Ctrl+Down  { set-window-height "+60"; }
+
+    // Воркспейсы (1-9)
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Звук и Мультимедиа
+    XF86AudioMute          { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioLowerVolume   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioRaiseVolume   { spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    
+    XF86AudioPlay  { spawn "playerctl" "play-pause"; }
+    XF86AudioNext  { spawn "playerctl" "next"; }
+    XF86AudioPrev  { spawn "playerctl" "previous"; }
+
+    // Яркость
+    Mod+BracketLeft  { spawn "brightnessctl" "s" "10%-"; }
+    Mod+BracketRight { spawn "brightnessctl" "s" "10%+"; }
+}
+

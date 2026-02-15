@@ -5,36 +5,22 @@
     "layer": "top",
 
     "modules-left": [
-      "hyprland/workspaces"
+      "niri/workspaces"
     ],
 
     "modules-center": [
-      "hyprland/window"
+      "niri/window"
     ],
 
     "modules-right": [
-      "hyprland/language",
+      "niri/language",
       "custom/weather",
       "pulseaudio",
-      "battery",
       "clock",
       "tray"
     ],
 
-    "hyprland/workspaces": {
-      "format": "{icon}",
-      "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "6": "",
-        "7": "",
-        "8": "",
-        "9": "",
-        "magic": ""
-      },
+    "niri/workspaces": {
       "persistent-workspaces": {
         "*": 9
       },
@@ -42,7 +28,7 @@
       "special-visible-only": true
     },
 
-    "hyprland/language": {
+    "niri/language": {
       "format-en": "🇺🇸",
       "format-ru": "🇷🇺",
       "min-length": 5
@@ -72,23 +58,6 @@
       },
       "format-muted": "",
       "on-click": "pavucontrol"
-    },
-
-    "battery": {
-      "format": "{icon} {capacity}%",
-      "format-alt": "{time} {icon}",
-      "format-charging": " {capacity}%",
-      "format-icons": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "states": {
-        "critical": 1,
-        "warning": 30
-      }
     },
 
     "clock": {
