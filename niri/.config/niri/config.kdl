@@ -98,6 +98,8 @@ spawn-at-startup "swww" "img" "~/Pictures/Wallpapers/wallpaper.png"
 
 spawn-at-startup "xwayland-satellite" ":11"
 
+spawn-at-startup "~/.config/niri/scripts/mount-nextcloud.sh"
+
 spawn-at-startup "swayidle" "-w" \
     "timeout" "300" "~/.config/niri/scripts/lock.sh" \
     "timeout" "600" "loginctl suspend" \
