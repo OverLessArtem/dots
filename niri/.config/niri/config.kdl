@@ -151,7 +151,7 @@ binds {
     Mod+Q { spawn "kitty"; }
     Mod+E { spawn "kitty" "-e" "zsh" "-c" "yazi"; }
     Mod+R { spawn "fuzzel"; }
-    Mod+W { spawn "firefox"; }
+    Mod+W { spawn "helium-browser"; }
     Mod+Y { spawn "kitty" "-e" "zsh" "-c" "rmpc"; }
     
     // Управление окнами
