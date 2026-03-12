@@ -93,8 +93,7 @@ spawn-at-startup "wireplumber"
 spawn-at-startup "pipewire-pulse"
 spawn-at-startup "/usr/libexec/polkit-gnome-authentication-agent-1"
 
-spawn-at-startup "swww-daemon"
-spawn-at-startup "swww" "img" "~/Pictures/Wallpapers/wallpaper.png"
+spawn-at-startup "~/.config/niri/scripts/wallpaper.sh"
 
 spawn-at-startup "xwayland-satellite" ":11"
 
@@ -134,11 +133,15 @@ window-rule {
     }
 }
 
-/-window-rule {
-    match app-id=r#"^org\.telegram\.desktop$"#
-
-    block-out-from "screen-capture"
-
+window-rule {
+    match app-id="pavucontrol"
+    match app-id="blueman-manager"
+    
+    open-floating true
+    
+    default-column-width { fixed 600; }
+    
+    default-window-height { fixed 450; }    
 }
 
 window-rule {

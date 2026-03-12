@@ -1,19 +1,22 @@
 [
   {
-    "height": 30,
+    "height": 20,
     "position": "top",
     "layer": "top",
 
     "modules-left": [
-      "niri/workspaces"
-    ],
-
-    "modules-center": [
+      "niri/workspaces",
       "niri/window"
     ],
 
+    "modules-center": [],
+
     "modules-right": [
       "niri/language",
+      "cpu",
+      "memory",
+      "disk",
+      "mpd",
       "custom/weather",
       "pulseaudio",
       "clock",
@@ -21,54 +24,84 @@
     ],
 
     "niri/workspaces": {
+      "format": "{index}",
       "persistent-workspaces": {
         "*": 9
       },
-      "show-special": true,
-      "special-visible-only": true
+      "all-outputs": true
+    },
+
+    "niri/window": {
+      "format": "| {title}",
+      "max-length": 35
     },
 
     "niri/language": {
-      "format-en": "🇺🇸",
-      "format-ru": "🇷🇺",
-      "min-length": 5
+      "format-en": "English (US)",
+      "format-ru": "Russian"
+    },
+
+    "cpu": {
+      "format": "|{usage}%",
+      "interval": 10
+    },
+
+    "memory": {
+      "format": "|{}%",
+      "interval": 30
+    },
+
+    "disk": {
+      "format": "|{used}",
+      "path": "/home",
+      "interval": 60
+    },
+
+    "mpd": {
+      "format": "|{stateIcon} {artist} - {title}",
+      "format-disconnected": "|󰝛",
+      "format-stopped": "|󰝛",
+      "state-icons": {
+        "playing": "",
+        "paused": "󰏤"
+      },
+      "max-length": 30,
+      "interval": 1, 
+      "consume-icons": { "on": " " },
+      "random-icons": { "on": " " },
+      "repeat-icons": { "on": " " },
+      "single-icons": { "on": "1 " },
+      "on-click": "mpc toggle",
+      "on-click-right": "mpc next",
+      "on-click-middle": "mpc prev",
+      "on-scroll-up": "mpc volume +2",
+      "on-scroll-down": "mpc volume -2"
     },
 
     "custom/weather": {
-      "class": "weather",
       "exec": "curl -s 'wttr.in/Mednogorsk?format=%c%t'",
-      "format": " {} ",
+      "format": "|{} ",
       "interval": 300
     },
 
     "pulseaudio": {
-      "format": "{icon} {volume}%",
-      "format-bluetooth": "{icon} {volume}% ",
+      "format": "|{icon} {volume}%",
       "format-icons": {
-        "default": [
-          "",
-          ""
-        ],
-        "car": "",
-        "handsfree": "",
-        "headphones": "",
-        "headset": "",
-        "phone": "",
-        "portable": ""
+        "default": ["", ""],
+        "headphones": ""
       },
-      "format-muted": "",
-      "on-click": "pavucontrol"
+      "format-muted": "|"
     },
 
     "clock": {
-      "format": "{:%d.%m.%Y - %H:%M}",
-      "format-alt": "{:%A, %B %d at %R}"
+      "format": "|{:%A, %d %b %H:%M}",
+      "format-alt": "|{:%A, %B %d, %Y}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
     "tray": {
       "icon-size": 14,
-      "spacing": 1
+      "spacing": 4
     }
   }
 ]
-
