@@ -13,21 +13,31 @@
 
     "modules-right": [
       "niri/language",
+      "custom/sep",
       "cpu",
+      "custom/sep",
       "memory",
+      "custom/sep",
       "disk",
+      "custom/sep",
       "mpd",
+      "custom/sep",
       "custom/weather",
+      "custom/sep",
       "pulseaudio",
+      "custom/sep",
       "clock",
       "tray"
     ],
 
+    "custom/sep": {
+        "format": "|",
+        "tooltip": false
+    },
+
     "niri/workspaces": {
       "format": "{index}",
-      "persistent-workspaces": {
-        "*": 9
-      },
+      "persistent-workspaces": { "*": 9 },
       "all-outputs": true
     },
 
@@ -42,25 +52,25 @@
     },
 
     "cpu": {
-      "format": "|{usage}%",
+      "format": " {usage}%",
       "interval": 10
     },
 
     "memory": {
-      "format": "|{}%",
+      "format": " {}%",
       "interval": 30
     },
 
     "disk": {
-      "format": "|{used}",
+      "format": " {used}",
       "path": "/home",
       "interval": 60
     },
 
     "mpd": {
-      "format": "|{stateIcon} {artist} - {title}",
-      "format-disconnected": "|󰝛",
-      "format-stopped": "|󰝛",
+      "format": "{stateIcon} {artist} - {title}",
+      "format-disconnected": "󰝛",
+      "format-stopped": "󰝛",
       "state-icons": {
         "playing": "",
         "paused": "󰏤"
@@ -80,22 +90,22 @@
 
     "custom/weather": {
       "exec": "curl -s 'wttr.in/Mednogorsk?format=%c%t'",
-      "format": "|{} ",
+      "format": "{} ",
       "interval": 300
     },
 
     "pulseaudio": {
-      "format": "|{icon} {volume}%",
+      "format": "{icon}  {volume}%",
       "format-icons": {
         "default": ["", ""],
         "headphones": ""
       },
-      "format-muted": "|"
+      "format-muted": ""
     },
 
     "clock": {
-      "format": "|{:%A, %d %b %H:%M}",
-      "format-alt": "|{:%A, %B %d, %Y}",
+      "format": "{:%A, %d %b %H:%M}",
+      "format-alt": "{:%A, %B %d, %Y}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
